@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obter Endereço IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://i.pinimg.com/564x/1a/ec/22/1aec22d1f38e300e24b6a120af6b10b1.jpg');
+        }
+
+        .container {
+            text-align: center;
+            background: rgb(61, 143, 29);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>O endereço do seu IP é</h1>
+        <p id="ip-address">Carregando...</p>
+        <h3>Cuidado! Não acesse qr codes desconhecidos, eles podem ser maliciosos e comprometer a sua segurança online. Pessoas mal intencionadas podem usar as suas informações pessoais, como o seu IP, para localizar, atacar e invadir dispositivos ou redes específicas.</h3>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip-address').textContent = data.ip;
+                })
+                .catch(error => {
+                    console.error('Erro ao obter o endereço IP:', error);
+                    document.getElementById('ip-address').textContent = 'Não foi possível obter o endereço IP';
+                });
+        });
+    </script>
+
+</body>
+</html>
